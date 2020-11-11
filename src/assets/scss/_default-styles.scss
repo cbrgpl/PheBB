@@ -1,0 +1,12 @@
+@import "custom-variables";
+
+*:focus {
+        outline: none;
+}
+
+.link {
+    color: $link-color;
+    &:hover {
+        color: $link-hover-color;
+    }
+}

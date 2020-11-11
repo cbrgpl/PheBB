@@ -1,0 +1,151 @@
+{
+	"name": "phebb",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint"
+	},
+	"dependencies": {
+		"core-js": "^3.6.5",
+		"vue": "^2.6.11",
+		"vue-router": "^3.2.0",
+		"vuex": "^3.4.0"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "~4.5.0",
+		"@vue/cli-plugin-eslint": "~4.5.0",
+		"@vue/cli-plugin-router": "~4.5.0",
+		"@vue/cli-plugin-vuex": "~4.5.0",
+		"@vue/cli-service": "~4.5.0",
+		"@vue/eslint-config-airbnb": "^5.0.2",
+		"babel-eslint": "^10.1.0",
+		"bootstrap": "^4.5.3",
+		"bootstrap-vue": "^2.19.0",
+		"eslint": "^6.7.2",
+		"eslint-import-resolver-webpack": "^0.13.0",
+		"eslint-plugin-import": "^2.20.2",
+		"eslint-plugin-jsx-a11y": "^6.3.1",
+		"eslint-plugin-vue": "^6.2.2",
+		"node-sass": "^4.12.0",
+		"rfs": "^9.0.3",
+		"sass-loader": "^8.0.2",
+		"vue-template-compiler": "^2.6.11"
+	},
+	"eslintConfig": {
+		"env": {
+			"node": true,
+			"es6": true
+		},
+		"plugins": [
+			"vue",
+			"import"
+		],
+		"parserOptions": {
+			"parser": "babel-eslint",
+			"sourceType": "module",
+			"ecmaFeatures": {
+				"modules": true
+			}
+		},
+		"extends": [
+			"eslint:recommended",
+			"plugin:jsx-a11y/recommended",
+			"plugin:import/errors",
+			"plugin:import/warnings",
+			"plugin:vue/recommended"
+		],
+		"rules": {
+			"no-mixed-spaces-and-tabs": 0,
+			"indent": [
+				"error",
+				"tab",
+				{
+					"VariableDeclarator": 1
+				}
+			],
+			"block-spacing": "error",
+			"brace-style": "error",
+			"camelcase": "error",
+			"import/extensions": [
+				"error",
+				"ignorePackages",
+				{
+					"vue": "always"
+				}
+			],
+			"comma-spacing": [
+				"error",
+				{
+					"before": false,
+					"after": true
+				}
+			],
+			"comma-dangle": [
+				"error",
+				{
+					"arrays": "always-multiline",
+					"objects": "always-multiline",
+					"imports": "never",
+					"exports": "never",
+					"functions": "never"
+				}
+			],
+			"space-before-blocks": "error",
+			"space-infix-ops": "error",
+			"no-var": "error",
+			"prefer-const": "error",
+			"keyword-spacing": [
+				"error",
+				{
+					"before": true
+				}
+			],
+			"import/no-unresolved": 0,
+			"vue/html-indent": [
+				"error",
+				"tab",
+				{
+					"attribute": 1,
+					"baseIndent": 1,
+					"closeBracket": 0,
+					"alignAttributesVertically": true
+				}
+			],
+			"vue/html-self-closing": 0,
+			"vue/singleline-html-element-content-newline": [
+				"error",
+				{
+					"ignoreWhenNoAttributes": true,
+					"ignoreWhenEmpty": true,
+					"ignores": [
+						"b-col"
+					]
+				}
+			],
+			"vue/html-closing-bracket-newline": [
+				"error",
+				{
+					"singleline": "never",
+					"multiline": "never"
+				}
+			],
+			"vue/max-attributes-per-line": [
+				"error",
+				{
+					"singleline": 5,
+					"multiline": {
+						"max": 4,
+						"allowFirstLine": false
+					}
+				}
+			]
+		}
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	]
+}

@@ -1,0 +1,4 @@
+// Gets pixels 
+@function rem($size) { 
+    @return $size / 16px * 1rem;
+}
