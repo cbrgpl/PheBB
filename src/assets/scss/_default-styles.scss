@@ -1,12 +1,63 @@
 @import "custom-variables";
+@import "global-functions";
 
-*:focus {
-        outline: none;
+* {
+    box-sizing: border-box;
+    &:focus {
+            outline: none;
+    }
+    ::selection {
+        background: $selectable;
+    }
 }
 
+// awhat
+button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    &:focus {
+        outline: none !important;
+    }
+}
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
+    background: $main !important;
+    color: $white !important;
+}
+
+
+img {
+    user-select: none;
+}
+
+
 .link {
-    color: $link-color;
+    color: inherit;
+    transition: 0.2s;
+    cursor: pointer;
     &:hover {
         color: $link-hover-color;
+        text-decoration: none;
+    }
+}
+
+.button {
+    display: inline-flex;
+
+    border-radius: rem(5px);
+    background: $third;
+    color: $white;
+
+    cursor: pointer;
+    transition: background 0.15s, transform 0.05s;
+    user-select: none;
+    &:hover {
+        background: darken($third, 5%);
+    }
+    &:active {
+        transform: scale(0.95);
     }
 }

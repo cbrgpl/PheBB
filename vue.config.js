@@ -10,9 +10,9 @@ module.exports = {
 	},
 	css: {
 		loaderOptions: {
-		  sass: {
-				prependData: `@import "@/assets/scss/_predefined.scss";`,
-		 },
+			sass: {
+				prependData: `@import "@/assets/scss/_predefined.scss"; @import "~rfs/sass";`,
+		 	},
 		},
 	  },
 }
