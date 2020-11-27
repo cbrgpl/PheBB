@@ -1,49 +1,52 @@
 <template>
-	<div>
-		<b-container fluid>
-			<b-row>
-				<b-col>
-					<b-form class="mx-auto d-flex justify-space" style="width: 85%;" @submit.prevent="onSubmit" @reset="onReset" @keypress.enter.prevent>
-						<div class="d-flex flex-column w-50 mr-3">
-							<b-form-group
-								id="email-group"
-								label="Ваш email:"
-								label-for="email"
-								:state="!$v.userRegData.email.$anyError"
-								description="Адрес вашей почты будет скрыт"
-								invalid-feedback="Вы ввели некорректный email">
-								<b-form-input
-									id="email" v-model="$v.userRegData.email.$model" trim
-									type="email" placeholder="Введите email"></b-form-input>
-							</b-form-group>
+	<b-form class="d-flex justify-space flex-column mx-auto mt-5" @submit.prevent="onSubmit" @reset="$v.userRegData.$reset" @keypress.enter.prevent="onSubmit">
+		<b-form-group
+			id="email-group"
+			label="Ваш email:"
+			label-for="email"
+			:state="!$v.userRegData.email.$anyError"
+			description="Адрес вашей почты будет скрыт"
+			invalid-feedback="Вы ввели некорректный email">
+			<b-form-input
+				id="email" v-model="$v.userRegData.email.$model" trim
+				type="email" placeholder="Введите email"></b-form-input>
+		</b-form-group>
 
-							<b-form-group
-								id="password-group"
-								label="Ваш пароль:"
-								label-for="password"
-								:state="!$v.userRegData.password.$anyError"
-								description="Ваш пароль должен содержать не менее 8 символов"
-								invalid-feedback="Ваш пароль должен содержать заглавную букву, строчную букву, цифру">
-								<b-form-input
-									id="email" v-model="$v.userRegData.password.$model" trim
-									type="password"
-									placeholder="Введите пароль"></b-form-input>
-							</b-form-group>
+		<b-form-group
+			id="password-group"
+			label="Ваш пароль:"
+			label-for="password"
+			:state="!$v.userRegData.password.$anyError"
+			description="Ваш пароль должен содержать не менее 8 символов"
+			invalid-feedback="Ваш пароль должен содержать заглавную букву, строчную букву, цифру">
+			<b-form-input
+				id="password" v-model="$v.userRegData.password.$model" trim
+				type="password"
+				placeholder="Введите пароль"></b-form-input>
+		</b-form-group>
 
-							<b-form-group
-								id="repeatpassword-group"
-								label="Повторите пароль:"
-								:state="!$v.userRegData.repeatpassword.$anyError"
-								label-for="repeatpassword"
-								invalid-feedback="Пароль не соответствует введенному выше">
-								<b-form-input
-									id="repeatpassword" v-model="$v.userRegData.repeatpassword.$model" trim
-									type="password"
-									placeholder="Введите пароль повторно"></b-form-input>
-							</b-form-group>
+		<b-form-group
+			id="repeatpassword-group"
+			label="Повторите пароль:"
+			:state="!$v.userRegData.repeatpassword.$anyError"
+			label-for="repeatpassword"
+			invalid-feedback="Пароль не соответствует введенному выше">
+			<b-form-input
+				id="repeatpassword" v-model="$v.userRegData.repeatpassword.$model" trim
+				type="password"
+				placeholder="Введите пароль повторно"></b-form-input>
+		</b-form-group>
 
+		<div class="d-flex justify-content-between">
+			<b-button class="w-25 mx-auto mt-3" type="reset">
+				Сбросить
+			</b-button>	
+			<b-button variant="primary" class="w-25 mx-auto mt-3" type="submit">
+				Регистрация
+			</b-button>	
+		</div>
 
-							<h2 class="mt-5">Данные о пользователе:</h2>
+		<!-- <h2 class="mt-5">Данные о пользователе:</h2>
 							<h5 style="color: #d48d01">Все ваши личные данные будут скрыты и доступны только вам и администрации непосредственно!</h5>
 							<div class="d-flex align-items-stretch pl-3 mt-2">
 								<span class="mr-3" style="width: 2px; background: #9a8b9f; opacity: 0.5"></span>
@@ -122,10 +125,9 @@
 										</b-form-input>
 									</b-form-group>
 								</div>
-							</div>
-						</div>
+							</div> -->
 
-						<div class="d-flex flex-column w-50 ml-3">
+		<!-- <div class="d-flex flex-column w-50 ml-3">
 							<b-form-group
 								id="address-group" label="Ваш адрес:" label-for="address" 
 								description="Ваш адрес будет доступен зарегестрированным пользователям">
@@ -168,23 +170,25 @@
 							<b-button type="submit">
 								Закончить регистрацию
 							</b-button>
-						</div>
-					</b-form>
-				</b-col>
-			</b-row>
-		</b-container>
-	</div>
+
+							<span v-if="loading">Loading...</span>
+							<span v-if="submitStatus !== 'OK'"> {{ submitStatus }}</span>
+							<button @click.prevent="test">
+								test
+							</button>
+						</div> -->
+	</b-form>
 </template>
 
 <script>
-import { yandexMap, ymapMarker } from 'vue-yandex-maps';
+// import { yandexMap, ymapMarker } from 'vue-yandex-maps';
 import { mapGetters } from 'vuex';
-import { required, minLength, email, helpers, sameAs, decimal, integer } from 'vuelidate/lib/validators';
+import { required, minLength, email, helpers, sameAs } from 'vuelidate/lib/validators';
 
 export default {
 	components: {
-		yandexMap,
-		ymapMarker, 
+		// yandexMap,
+		// ymapMarker, 
 	},
 	data() {
 		return {
@@ -206,9 +210,6 @@ export default {
 					birthAddress: '',
 				},
 			},
-			userRegStates: {
-
-			},
 			ymapSettings: {
 				ymap: Object,
 				coords: [
@@ -217,6 +218,7 @@ export default {
 				],
 				zoom: 10,
 			},
+			submitStatus: null,
 		}
 	},
 	validations: {
@@ -236,74 +238,89 @@ export default {
 			repeatpassword: {
 				sameAsPassword: sameAs('password'),
 			},
-			passport: {
-				series: {
-					required,
-					length(value) {
-						return value.length === 12;
-					},
-				},
-				issuer: {
-					required,
-					minLength: minLength(7),
-				},
-				departmentcode: {
-					required,
-					length(value) {
-						return value.length === 7;
-					},
-				},
+			// passport: {
+			// 	series: {
+			// 		required,
+			// 		length(value) {
+			// 			return !helpers.req(value) || value.length === 12;
+			// 		},
+			// 	},
+			// 	issuer: {
+			// 		required,
+			// 		minLength: minLength(7),
+			// 	},
+			// 	departmentcode: {
+			// 		required,
+			// 		length(value) {
+			// 			return !helpers.req(value) || value.length === 7;
+			// 		},
+			// 	},
 
-				issueDate: {
-					required,
-					length(value) {
-						return value.length === 10;
-					},
-				},
+			// 	issueDate: {
+			// 		required,
+			// 		length(value) {
+			// 			return !helpers.req(value) || value.length === 10;
+			// 		},
+			// 	},
 
-				FCS: {
-					required,
-					minLength: minLength(8),
-				},
-				birthDate: {
-					required,
-					length(value) {
-						return value.length === 10;
-					},
-				},
-				birthAddress: {
-					required,
-					minLength: minLength(5),
-				},
+			// 	FCS: {
+			// 		required,
+			// 		minLength: minLength(8),
+			// 	},
+			// 	birthDate: {
+			// 		required,
+			// 		length(value) {
+			// 			return !helpers.req(value) || value.length === 10;
+			// 		},
+			// 	},
+			// 	birthAddress: {
+			// 		required,
+			// 		minLength: minLength(5),
+			// 	},
 
-				apartmentNumber: {
-					required,
-					decimal: decimal(),
-					integer: integer(),
-				},
-			},
-			phoneNumber: {
-				required,
-				minLength: minLength(17),
-			},
-			apartmentNumber: {
-				required, 
-				minLength: minLength(1),
-			},
+			// 	apartmentNumber: {
+			// 		required,
+			// 		decimal: decimal(),
+			// 		integer: integer(),
+			// 	},
+			// },
+			// phoneNumber: {
+			// 	required,
+			// 	minLength: minLength(17),
+			// },
+			// apartmentNumber: {
+			// 	required, 
+			// 	minLength: minLength(1),
+			// },
 		},
 	},
 	computed: {
-		...mapGetters(['ymapsGet']),
+		...mapGetters(['ymapsGet', 'loading']),
 	},
 	methods: {
+		test() {
+			const user = { 
+				email: this.userRegData.email,
+				password: this.userRegData.password,
+			};	
+
+			this.$store.dispatch('registerUser', user)
+				.then(() => {
+					this.submitStatus = 'OK';
+				})
+				.catch((error) => {
+					this.submitStatus = error.message;
+				});
+		},
 		onSubmit() {
 			this.$v.userRegData.$touch();
 			if (this.$v.userRegData.$error) return;
+			const user = { 
+				email: this.userRegData.email,
+				password: this.userRegData.password,
+			}
 
-			// можно отправлять на фаербейзс
-		},
-		onReset() {
-			console.log('onreset')
+			this.$store.dispatch('registerUser', user);
 		},
 		onMapClick(event) {
 			this.ymapSettings.coords = event.get('coords');
@@ -330,10 +347,6 @@ export default {
 			myMap.controls.remove('rulerControl');
 			myMap.controls.remove('typeSelector');
 			this.ymapSettings.ymap = myMap;
-		},
-		addSeriesNumberMask() {
-			//  const el = document.getElementById(id);
-			// el.setAttribute("v-mask", mask);
 		},
 	},
 }

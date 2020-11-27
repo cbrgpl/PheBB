@@ -20,8 +20,6 @@ import VueMask from 'v-mask'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import { mapActions } from 'vuex';
-
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 Vue.use(YmapPlugin, settings);
@@ -43,14 +41,6 @@ Vue.config.productionTip = false;
 new Vue({
 	router,
 	store, 
-	data() {
-		return {
-			ymaps: Object,
-		}
-	},
-	beforeMount() {
-		this.ymapAction();
-	},
 	created() {
 		const firebaseConfig = {
 			apiKey: "AIzaSyCsPZmGdp1UIEnmL4A5ghIu-t2VR3u1U8w",
@@ -63,11 +53,12 @@ new Vue({
 		};
 		
 		firebase.initializeApp(firebaseConfig);
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				this.$store.dispatch('loggedUser', user);
+			}
+		});
 	},
-	methods: {
-		...mapActions([
-			'ymapAction',
-		]),
-	},
+
 	render: (h) => h(App),
 }).$mount('#app');

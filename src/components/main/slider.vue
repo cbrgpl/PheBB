@@ -8,9 +8,7 @@
 			indicators
 			background="#ababab"
 			img-width="100%"
-			style="text-shadow: 1px 1px 2px #333;"
-			@sliding-start="onSlideStart"
-			@sliding-end="onSlideEnd">
+			style="text-shadow: 1px 1px 2px #333;">
 			<!-- Text slides with image -->
 			<b-carousel-slide
 				v-for="slidePath in slidesImagesPaths" :key="slidePath"
@@ -35,14 +33,17 @@ export default {
 		}
 	},
 	methods: {
-		onSlideStart(slide) {
-			console.log(slide);
-			this.sliding = true
-		},
-		onSlideEnd(slide) {
-			console.log(slide);
-			this.sliding = false
-		},
+		// @sliding-start="onSlideStart"
+		// @sliding-end="onSlideEnd"
+		//
+		// onSlideStart(slide) {
+		// 	console.log(slide);
+		// 	this.sliding = true
+		// },
+		// onSlideEnd(slide) {
+		// 	console.log(slide);
+		// 	this.sliding = false
+		// },
 	},
 }
 </script>
