@@ -10,7 +10,7 @@ export default {
 		},
 	},
 	actions: {
-		async ymapAction(store) {
+		async ymapAction({commit}) {
 			await loadYmap({ ...{
 				apiKey: 'b3a57652-f985-4341-b678-6ab29a39d09a',
 				lang: 'ru_RU',
@@ -19,7 +19,7 @@ export default {
 				version: '2.1',
 			}, debug: true });
 			// eslint-disable-next-line no-undef
-			store.commit('setYmap', ymaps);
+			commit('setYmap', ymaps);
 		},
 	},
 	getters: {

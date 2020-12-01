@@ -8,6 +8,7 @@ module.exports = {
 			})
 			.end()
 	},
+	publicPath: '/PheBB/',
 	css: {
 		loaderOptions: {
 			sass: {

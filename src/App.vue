@@ -8,12 +8,26 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import vueHeader from '@/components/navigation/header.vue';
 
 export default {
 	name: 'App',
 	components: {
 		vueHeader,
+	},
+	computed: {
+		...mapGetters(['routeTo']),
+	},
+	watch: {
+		routeTo() {
+			this.$router.push({name: this.routeTo})
+		},
+		
+	},
+	mounted() {
+		this.$store.dispatch('ymapAction');	
 	},
 
 }

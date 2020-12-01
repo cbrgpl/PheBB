@@ -8,7 +8,7 @@ import { BootstrapVue, BootstrapVueIcons  } from 'bootstrap-vue';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/database';
+import 'firebase/firestore';
 import 'firebase/messaging';
 import 'firebase/storage';
 
@@ -54,9 +54,11 @@ new Vue({
 		
 		firebase.initializeApp(firebaseConfig);
 		firebase.auth().onAuthStateChanged((user) => {
-			if (user) {
-				this.$store.dispatch('loggedUser', user);
-			}
+			user ? 
+				user.emailVerified ? 
+					this.$store.dispatch('loggedUser', user)
+					: null 
+				: null
 		});
 	},
 

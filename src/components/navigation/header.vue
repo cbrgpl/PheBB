@@ -10,10 +10,10 @@
 						<span style="user-select:none;">PheBB</span>
 					</h2>
 				</b-col>
-				<template v-if="!checkUser">
+				<template v-if="!checkRegCompletion">
 					<b-col offset="2" class="mr-xl-2">
 						<b-row align-h="end">
-							<router-link active-class="header-link--active" tag="span" class="header-link link p-1" :to="{name: 'Main'}">
+							<router-link active-class="header-link--active" tag="span" class="header-link link p-1" :to="{name: 'SignIn'}">
 								<b-icon icon="person-circle" class="mr-2"></b-icon>
 								<span>Авторизация</span>
 							</router-link>
@@ -49,7 +49,7 @@
 				</template>
 			</b-row>
 		</b-container>
-		<template v-if="checkUser">
+		<template v-if="checkRegCompletion">
 			<nav
 				:class="[{'header-menu--visible': isProfileMenuVisible}, 'header-menu']">
 				<router-link tag="div" class="header-menu-item" to="/">
@@ -81,7 +81,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['checkUser', 'user']),
+		...mapGetters(['checkRegCompletion', 'user']),
 	},
 	methods: {
 		logout() {

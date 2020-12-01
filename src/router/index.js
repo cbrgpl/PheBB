@@ -16,7 +16,6 @@ const routes = [
 	},
 	{
 		path: '/auth',
-		name: 'Auth',
 		component: () => import('@/views/Auth.vue'),
 		beforeEnter(to, from, next) {
 			const isRedirection = to.name !== 'Auth'; // Всегда будет false
@@ -27,13 +26,29 @@ const routes = [
 				name: 'Registration',
 				path: 'registration',
 				component: () => import('@/components/auth/registration.vue'),
+				beforeEnter(to, from, next) {
+					store.dispatch('clearError');
+					next();
+				},
 			},
 			{
 				name: 'SignIn',
 				path: 'sign-in',
 				component: () => import('@/components/auth/sign-in.vue'),
+				beforeEnter(to, from, next) {
+					store.dispatch('clearError');
+					next();
+				},
 			},
 		],
+	},
+	{
+		name: 'RegCompletion',
+		path: '/reg-completion',
+		component: () => import('@/views/Reg-completion.vue'),
+		beforeEnter(to, from, next) {
+			store.getters.checkRegCompletion ? next({name: 'Home'}) : next(true);
+		},
 	},
 	{
 		path: '/home',
@@ -51,11 +66,5 @@ const router = new VueRouter({
 	base: process.env.BASE_URL,
 	routes,
 });
-
-// router.beforeEach((to, from, next) => {
-// 	if (to.name === 'Auth')
-// 		next({name: 'SignIn'})
-// 	else next();
-// })
 
 export default router;

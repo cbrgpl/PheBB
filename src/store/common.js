@@ -2,6 +2,7 @@ export default {
 	state:{
 		loading: false,
 		error: null,
+		routeTo: null,
 	},
 	mutations: {
 		setLoading(state, payload) {
@@ -12,6 +13,9 @@ export default {
 		},
 		clearError(state) {
 			state.error = null;
+		},
+		routeTo(state, payload) {
+			state.routeTo = payload;
 		},
 	},
 	actions: {
@@ -34,6 +38,9 @@ export default {
 		},
 		isError(state) {
 			return state.error !== null;
+		},
+		routeTo(state) {
+			return state.routeTo;
 		},
 	},
 }
