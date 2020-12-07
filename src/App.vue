@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<vue-Header	/>
+		<vue-Header v-if="navVisible" />
 		<main class="content">
 			<router-view />
 		</main>
@@ -18,7 +18,7 @@ export default {
 		vueHeader,
 	},
 	computed: {
-		...mapGetters(['routeTo']),
+		...mapGetters(['routeTo', 'navVisible']),
 	},
 	watch: {
 		routeTo() {
@@ -28,6 +28,7 @@ export default {
 	},
 	mounted() {
 		this.$store.dispatch('ymapAction');	
+		this.$router;
 	},
 
 }
@@ -38,11 +39,12 @@ export default {
 	width: 100%;
 	height: 100%;
 
-	display: grid;
-	grid-template-rows: rem(65px) 1fr;
+	display: flex;
+	flex-direction: column;
 }
 
 .content {
 	overflow: auto;
+	flex-grow: 1;
 }
 </style>

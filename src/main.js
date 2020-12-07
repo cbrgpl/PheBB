@@ -9,7 +9,6 @@ import { BootstrapVue, BootstrapVueIcons  } from 'bootstrap-vue';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import 'firebase/messaging';
 import 'firebase/storage';
 
 import YmapPlugin from 'vue-yandex-maps';

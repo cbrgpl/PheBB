@@ -58,6 +58,53 @@ const routes = [
 			store.getters.checkUser ? next() : next({name: 'Main'})
 		},
 	},
+	{
+		path: '/ampanel',
+		component: () => import('@/views/Admin-home.vue'),
+		beforeEnter(to, from, next) {
+			// Если токен есть в localStorage, то запускаем
+			const token = localStorage.getItem('amtoken');
+			if (token) {
+				// Запоминаем токен, чтобы потом проверить его с тем, что придет с сервера
+				to.params.token = token;
+				next();			
+				return;
+			}
+
+			store.dispatch('getAdminToken', store.getters.user.email)
+				.then(() => {
+					next();
+					localStorage.setItem('amtoken', store.getters.adminToken);
+				})
+				.catch((error) => {
+					console.error(error);
+					next({name: 'Main'});
+				})
+		},
+		children: [
+			{
+				path: 'users',
+				component: () => import('@/components/admin/users.vue'),
+			},
+			{
+				name: 'Admin',
+				path: 'categories',
+				component: () => import('@/components/admin/categories.vue'),
+			},
+			{
+				path: 'goods',
+				component: () => import('@/components/admin/goods.vue'),
+			},
+			{
+				path: 'roles',
+				component: () => import('@/components/admin/roles.vue'),
+			},
+		],
+	},
+	{
+		path: '/*',
+		component: () => import('@/views/nf404.vue'),
+	},
 
 ];
 

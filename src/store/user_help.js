@@ -1,4 +1,4 @@
-export default class User {
+class User {
 	constructor({id, email, firebaseUser}) {
 		this.id = id;
 		this.email = email;
@@ -8,8 +8,13 @@ export default class User {
 	}
 
 	updateUserData(firestoreData) {
-		this.firestoreData = {};
-		for (const key in firestoreData)
-			this.firestoreData[key] = firestoreData[key];
+		this.firestoreData = firestoreData
 	}
 }
+
+class UserAdmin {
+	
+}
+
+
+export { User, UserAdmin }

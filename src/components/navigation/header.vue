@@ -60,6 +60,10 @@
 					<b-icon-chat-dots class="mr-2"></b-icon-chat-dots>
 					Сообщения 
 				</router-link>
+				<router-link v-if="userRole === 'admin'" tag="div" class="header-menu-item" :to="{name: 'Admin'}">
+					<b-icon-chat-dots class="mr-2"></b-icon-chat-dots>
+					Админка 
+				</router-link>
 				<div class="header-menu-item" @click="logout">
 					<b-icon-patch-minus class="mr-2"></b-icon-patch-minus>
 					Выход
@@ -81,7 +85,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['checkRegCompletion', 'user']),
+		...mapGetters(['checkRegCompletion', 'user', 'userRole']),
 	},
 	methods: {
 		logout() {
